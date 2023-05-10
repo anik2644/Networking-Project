@@ -4,50 +4,51 @@ import java.net.*;
 import java.io.*;
 
 public class Server {
-    String user;
-    String password;
-    int balance;
+//    String user;
+//    String password;
+//    int balance;
+//
+//    Server(String user, String password, int balance) {
+//        this.user = user;
+//        this.password = password;
+//        this.balance = balance;
+//    }
 
-    Server(String user, String password, int balance) {
-        this.user = user;
-        this.password = password;
-        this.balance = balance;
-    }
+//    public void setBalance(int newBalance) {
+//        this.balance = newBalance;
+//    }
+//
+//    public int getBalance() {
+//        return this.balance;
+//    }
 
-    public void setBalance(int newBalance) {
-        this.balance = newBalance;
-    }
-
-    public int getBalance() {
-        return this.balance;
-    }
-
-    public String checkBalance() {
-        return "Your current balance is: " + getBalance() + " taka";
-    }
-
-    public void credit(int value) {
-        setBalance(getBalance() + value);
-    }
-
-    public boolean debit(int value) {
-        if (getBalance() >= value) {
-            setBalance(getBalance() - value);
-            return true;
-        } else
-            return false;
-    }
-
+//    public String checkBalance() {
+//        return "Your current balance is: " + getBalance() + " taka";
+//    }
+//
+//    public void credit(int value) {
+//        setBalance(getBalance() + value);
+//    }
+//
+//    public boolean debit(int value) {
+//        if (getBalance() >= value) {
+//            setBalance(getBalance() - value);
+//            return true;
+//        } else
+//            return false;
+//    }
+    static User[] users = new User[3];
+    static int userNo = 0;
     public static void main(String args[]) throws IOException {
-        int userNo = -1;
 
-        Server[] users;
 
-        users = new Server[3];
 
-        users[0] = new Server("Rahim", "1234", 50000);
-        users[1] = new Server("Karim", "1234", 60000);
-        users[2] = new Server("Rafiq", "1234", 40000);
+
+
+
+        users[0] = new User("Rahim", "1234", 50000);
+        users[1] = new User("Karim", "1234", 60000);
+        users[2] = new User("Rafiq", "1234", 40000);
 
         delay();
 
@@ -98,52 +99,68 @@ public class Server {
             while (true) {
                 Object cMsg3 = ois.readObject();
                 String command = (String) cMsg3;
-
+              //  System.out.println(command + "  user name");
+//                System.out.println(userNo);
                 if (userNo >= 0) {
                     if (command.equals("c")) {
 
-                        sendPackets();
+                       // sendPackets();
 
                         oos.writeObject("Enter amount to be credited:\n");
 
                         Object cMsg4 = ois.readObject();
                         int loop = (int) cMsg4;
 
-                        if (loop == 1) {
-                            Object cMsg5 = ois.readObject();
-                            int value = (int) cMsg5;
-
-                            users[userNo].credit(value);
-
-                            sendPackets();
-
-                            oos.writeObject("Your account has been credited by " + value + " taka\n"
-                                    + users[userNo].checkBalance());
-                        } else if (loop == 2) {
-                            Object cMsg5 = ois.readObject();
-                            int value = (int) cMsg5;
-
-                            Object cMsg6 = ois.readObject();
-                            int value1 = (int) cMsg6;
-
-                            users[userNo].credit(value);
-
-                            sendPackets();
-
-                            oos.writeObject("Your account has been credited by " + value + " taka\n"
-                                    + users[userNo].checkBalance());
-                        }
+//                        if (loop == 1) {
+//                            Object cMsg5 = ois.readObject();
+//                            int value = (int) cMsg5;
+//
+//                            users[userNo].credit(value);
+//
+//                            sendPackets();
+//
+//                            oos.writeObject("Your account has been credited by " + value + " taka\n"
+//                                    + users[userNo].checkBalance());
+//                        } else if (loop == 2) {
+//                            Object cMsg5 = ois.readObject();
+//                            int value = (int) cMsg5;
+//
+//                            Object cMsg6 = ois.readObject();
+//                            int value1 = (int) cMsg6;
+//
+//                            users[userNo].credit(value);
+//
+//                            sendPackets();
+//
+//                            oos.writeObject("Your account has been credited by " + value + " taka\n"
+//                                    + users[userNo].checkBalance());
+//                        }
 
                     } else if (command.equals("d")) {
 
-                        sendPackets();
+                        //sendPackets();
+                        System.out.println("d section");
 
-                        oos.writeObject("Enter amount to be debited:\n");
+                     //   oos.writeObject("Enter amount to be debited:\n");
 
                         Object cMsg4 = ois.readObject();
-                        int loop = (int) cMsg4;
+                        String amount = (String) cMsg4;
+                        int requestedMoney = Integer.parseInt(amount);
 
-                        if (loop == 1) {
+                        System.out.println(requestedMoney);
+
+                        if(requestedMoney>users[userNo].balance)
+                        {
+                            oos.writeObject("false");
+                        }
+                        else {
+
+                            users[userNo].balance-=requestedMoney;
+                            oos.writeObject("true");
+                            System.out.println("hi");
+                        }
+                         /*
+                        if (requestedMoney == 1) {
                             Object cMsg5 = ois.readObject();
                             int value = (int) cMsg5;
 
@@ -155,7 +172,7 @@ public class Server {
                             else
                                 oos.writeObject("Insufficient Balance\n" + users[userNo].checkBalance());
 
-                        } else if (loop == 2) {
+                        } else if (requestedMoney == 2) {
                             Object cMsg5 = ois.readObject();
                             int value = (int) cMsg5;
 
@@ -170,7 +187,11 @@ public class Server {
                             else
                                 oos.writeObject("Insufficient Balance\n" + users[userNo].checkBalance());
                         }
-                    } else if (command.equals("q")) {
+                        */
+                    }
+
+
+                    else if (command.equals("q")) {
 
                         sendPackets();
 
@@ -185,7 +206,7 @@ public class Server {
 
                         sendPackets();
 
-                        oos.writeObject(users[userNo].checkBalance());
+                      //  oos.writeObject(users[userNo].checkBalance());
                     }
                 }
             }

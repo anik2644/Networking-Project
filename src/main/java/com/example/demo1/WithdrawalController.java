@@ -28,7 +28,29 @@ public class WithdrawalController {
     private TextField password_bar;
 
     @FXML
-    void ok_clicked(ActionEvent event) {
+    void ok_clicked(ActionEvent event) throws IOException, ClassNotFoundException {
+
+
+       // System.out.println(amount_bar.getText());
+       // System.out.println(password_bar.getText());
+
+      //  Main.name = username.getText();
+        Main.pass = password_bar.getText();
+        Main.delay();
+        Main.wirhDrawValidation(amount_bar.getText(),password_bar.getText());
+        Main.delay();
+
+
+//        if(loginFlag==1)
+//        {
+//            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            scene = new Scene(root, 500,400);
+//            stage.setScene(scene);
+//            stage.show();
+//        }
+
+
 
     }
 

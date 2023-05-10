@@ -15,6 +15,7 @@ public class Main extends Application {
 
     static String name ;//= "Rahim";
     static String pass ;// ="1234";
+    static String currentPassword;
 
     public Main() throws IOException {
     }
@@ -79,6 +80,59 @@ public class Main extends Application {
     }
 
 
+    static void wirhDrawValidation(String amount, String password) throws IOException, ClassNotFoundException {
+
+        //Socket socket = new Socket("localhost", 5000);
+        delay();
+        System.out.println("Withdraw validation...");
+
+        delay();
+        System.out.println("c0");
+
+        if(password.equals(Main.currentPassword))
+        {
+
+            System.out.println(amount);
+            System.out.println(password);
+            objectOutputStream.writeObject("d");
+           // objectOutputStream.writeObject(pass);
+
+            System.out.println("c1");
+//
+//            Object fromServer1 = objectInputStream.readObject();
+//            String fs = (String) fromServer1;
+//            System.out.println(fs);
+            objectOutputStream.writeObject(amount);
+
+            System.out.println("c2");
+
+            Object fromServer1 = objectInputStream.readObject();
+
+            String check = (String) fromServer1;
+            System.out.println(check);
+
+
+            if (check.equals("true")) {
+                // delay();
+                System.out.println("\nMoney withdraw done...");
+                //LoginpageController.loginFlag=1;
+                // currentPassword= pass;
+            }
+            else {
+                // delay();
+                System.out.println("Not valid! Try again...");
+                //System.exit(0);
+            }
+
+
+        }
+        else {
+            System.out.println("Wrong password");
+        }
+
+
+    }
+
     static void sendPackets() throws IOException, ClassNotFoundException {
 
         //Socket socket = new Socket("localhost", 5000);
@@ -102,6 +156,7 @@ public class Main extends Application {
            // delay();
             System.out.println("\nLogin Successful...");
             LoginpageController.loginFlag=1;
+            currentPassword= pass;
         }
         else {
            // delay();
