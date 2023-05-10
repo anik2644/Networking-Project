@@ -104,12 +104,41 @@ public class Server {
                 if (userNo >= 0) {
                     if (command.equals("c")) {
 
-                       // sendPackets();
 
-                        oos.writeObject("Enter amount to be credited:\n");
+
+                        //sendPackets();
+                        System.out.println("c section");
+
+                        //   oos.writeObject("Enter amount to be debited:\n");
 
                         Object cMsg4 = ois.readObject();
-                        int loop = (int) cMsg4;
+                        String amount = (String) cMsg4;
+                        int requestedMoney = Integer.parseInt(amount);
+
+                        System.out.println(requestedMoney);
+
+                        //if(requestedMoney>users[userNo].balance)
+                        if(false)
+                        {
+                            oos.writeObject("false");
+                        }
+                        else {
+
+                            users[userNo].balance+=requestedMoney;
+                            oos.writeObject("true");
+
+                            System.out.print("new balance is ");
+                            System.out.println(Server.users[Server.userNo].balance);
+                            System.out.println("hi");
+                        }
+
+
+                       // sendPackets();
+//
+//                        oos.writeObject("Enter amount to be credited:\n");
+//
+//                        Object cMsg4 = ois.readObject();
+//                        int loop = (int) cMsg4;
 
 //                        if (loop == 1) {
 //                            Object cMsg5 = ois.readObject();
@@ -136,7 +165,8 @@ public class Server {
 //                                    + users[userNo].checkBalance());
 //                        }
 
-                    } else if (command.equals("d")) {
+                    }
+                    else if (command.equals("d")) {
 
                         //sendPackets();
                         System.out.println("d section");

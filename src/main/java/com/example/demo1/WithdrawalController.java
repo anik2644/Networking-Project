@@ -40,8 +40,7 @@ public class WithdrawalController {
         Main.wirhDrawValidation(amount_bar.getText(),password_bar.getText());
         Main.delay();
 
-        System.out.print("new balance is ");
-        System.out.println(Server.users[Server.userNo].balance);
+
 
         root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

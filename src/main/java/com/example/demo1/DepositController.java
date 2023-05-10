@@ -28,8 +28,23 @@ public class DepositController {
     private TextField password_bar;
 
     @FXML
-    void ok_clicked(ActionEvent event) {
+    void ok_clicked(ActionEvent event) throws IOException, ClassNotFoundException {
 
+
+        //  Main.name = username.getText();
+        Main.pass = password_bar.getText();
+        Main.delay();
+        Main.depopsitValidation(amount_bar.getText(),password_bar.getText());
+        Main.delay();
+
+//        System.out.print("new balance is ");
+//        System.out.println(Server.users[Server.userNo].balance);
+
+        root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 500,400);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void BackbuttonClicked(ActionEvent event) throws IOException {

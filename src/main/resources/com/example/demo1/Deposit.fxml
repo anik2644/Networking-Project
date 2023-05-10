@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.LoginPageController">
+<AnchorPane prefHeight="400.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.DepositController">
     <children>
         <Accordion layoutX="228.0" layoutY="110.0" />
         <Button fx:id="ok" layoutX="242.0" layoutY="266.0" mnemonicParsing="false" onAction="#ok_clicked" prefHeight="37.0" prefWidth="92.0" text="Ok" />
