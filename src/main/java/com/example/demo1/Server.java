@@ -65,20 +65,36 @@ public class Server {
         ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
         try {
-            Object cMsg1 = ois.readObject();
-            Object cMsg2 = ois.readObject();
 
-            String Name = (String) cMsg1;
-            String Pass = (String) cMsg2;
+            int flag=0;
 
-            for (int i = 0; i < 3; i++) {
-                if (Name.equals(users[i].user) && Pass.equals(users[i].password)) {
-                    oos.writeObject(true);
-                    userNo = i;
-                    break;
-                } else
-                    oos.writeObject(false);
+            while(flag==0)
+            {
+                Object cMsg1 = ois.readObject();
+                Object cMsg2 = ois.readObject();
+
+                String Name = (String) cMsg1;
+                String Pass = (String) cMsg2;
+                System.out.println("this is server");
+
+                for (int i = 0; i < 3; i++) {
+                    if (Name.equals(users[i].user) && Pass.equals(users[i].password))
+                    {
+                        oos.writeObject(true);
+                        userNo = i;
+                        flag =1;
+                        break;
+                    }
+                    else
+                    {
+                     continue;
+                    }
+
+                }
+                oos.writeObject(false);
+                System.out.println("s5");
             }
+
             while (true) {
                 Object cMsg3 = ois.readObject();
                 String command = (String) cMsg3;
