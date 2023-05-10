@@ -38,6 +38,11 @@ public class LoginpageController {
 
     @FXML
     void ok_clicked(ActionEvent event) throws IOException {
+
+        System.out.println(username.getText());
+        System.out.println(password_bar.getText());
+
+
         root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root, 500,400);

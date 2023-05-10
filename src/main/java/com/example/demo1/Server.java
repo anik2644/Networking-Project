@@ -2,14 +2,13 @@ package com.example.demo1;
 
 import java.net.*;
 import java.io.*;
-import java.util.*;
 
-public class Server2 {
+public class Server {
     String user;
     String password;
     int balance;
 
-    Server2(String user, String password, int balance) {
+    Server(String user, String password, int balance) {
         this.user = user;
         this.password = password;
         this.balance = balance;
@@ -42,13 +41,13 @@ public class Server2 {
     public static void main(String args[]) throws IOException {
         int userNo = -1;
 
-        Server2[] users;
+        Server[] users;
 
-        users = new Server2[3];
+        users = new Server[3];
 
-        users[0] = new Server2("Rahim", "1234", 50000);
-        users[1] = new Server2("Karim", "1234", 60000);
-        users[2] = new Server2("Rafiq", "1234", 40000);
+        users[0] = new Server("Rahim", "1234", 50000);
+        users[1] = new Server("Karim", "1234", 60000);
+        users[2] = new Server("Rafiq", "1234", 40000);
 
         delay();
 
