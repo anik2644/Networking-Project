@@ -114,12 +114,14 @@ public class Main extends Application {
 
             if (check.equals("true")) {
                 // delay();
+                WithdrawalController.withdrawSuccessfullFlag =1;
                 System.out.println("\nMoney withdraw done...");
                 //LoginpageController.loginFlag=1;
                 // currentPassword= pass;
             }
             else {
                 // delay();
+                WithdrawalController.withdrawSuccessfullFlag =0;
                 System.out.println("Not valid! Try again...");
                 //System.exit(0);
             }
@@ -185,6 +187,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException, ClassNotFoundException {
 
         System.out.println("Client Started...");
+        MiniStatementController.textPara ="hello world";
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("LoginPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 400);

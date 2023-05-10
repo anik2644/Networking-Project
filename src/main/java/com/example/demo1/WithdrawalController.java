@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class WithdrawalController {
-
+    static int withdrawSuccessfullFlag=0;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -40,18 +40,14 @@ public class WithdrawalController {
         Main.wirhDrawValidation(amount_bar.getText(),password_bar.getText());
         Main.delay();
 
+        System.out.print("new balance is ");
+        System.out.println(Server.users[Server.userNo].balance);
 
-//        if(loginFlag==1)
-//        {
-//            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-//            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            scene = new Scene(root, 500,400);
-//            stage.setScene(scene);
-//            stage.show();
-//        }
-
-
-
+        root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 500,400);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void BackbuttonClicked(ActionEvent event) throws IOException {

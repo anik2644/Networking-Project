@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MiniStatementController {
+
+    static int miniFlag=0;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -21,13 +23,24 @@ public class MiniStatementController {
     private Label label;
 
     @FXML
+    static String textPara;
+
+    @FXML
     private Button ok;
 
     @FXML
     private Button print;
 
     @FXML
-    void ok_check_clicked(ActionEvent event) {
+    void ok_check_clicked(ActionEvent event) throws IOException {
+
+
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 500,400);
+        stage.setScene(scene);
+        stage.show();
+
 
     }
 
