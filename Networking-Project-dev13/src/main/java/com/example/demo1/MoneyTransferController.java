@@ -43,12 +43,20 @@ public class MoneyTransferController {
         for(int i=0;i<4;i++) {
             if (password_bar.getText().equals(User.users[User.userNo].password)) {
 
+
                 break;
             } else {
                 System.out.println("Wrong password ...Try again");
                 System.out.print("you have ");
                 System.out.print(4-i);
                 System.out.print("more time left");
+
+                root = FXMLLoader.load(getClass().getResource("MoneyTransfer.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root, 500,400);
+                stage.setScene(scene);
+                stage.show();
+
             }
         }
         Main.moneyTransfer(account_no.getText(),amount_bar.getText(),password_bar.getText());
