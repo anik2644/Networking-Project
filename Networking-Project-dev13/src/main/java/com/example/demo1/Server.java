@@ -82,7 +82,8 @@ public class Server {
                     if (Name.equals(User.users[i].user) && Pass.equals(User.users[i].password))
                     {
                         oos.writeObject("true");
-                        User.userNo = i;
+                        oos.writeObject(i);
+                       // User.userNo = i;
                         flag =1;
                         fl=1;
                         break;
@@ -98,7 +99,6 @@ public class Server {
                     oos.writeObject("false");
                 }
 
-                System.out.println("s5");
             }
 
             while (true) {
@@ -153,6 +153,36 @@ public class Server {
                             System.out.println("Money Withdraw done");
                         }
                     }
+
+                    else if (command.equals("transfer")) {
+
+                        System.out.println("transfer section");
+
+                        Object cMsg4 = ois.readObject();
+                        String amount = (String) cMsg4;
+                        int requestedMoney = Integer.parseInt(amount);
+
+                        System.out.println(requestedMoney);
+
+                        if(requestedMoney>User.users[User.userNo].balance)
+                        {
+                            oos.writeObject("false");
+                        }
+                        else {
+
+                            User.users[User.userNo].balance-=requestedMoney;
+                            oos.writeObject("true");
+
+
+                            System.out.println(requestedMoney);
+                            delay();
+                            oos.writeObject(requestedMoney);
+                            System.out.print("new balance is ");
+                            System.out.println(User.users[User.userNo].balance-requestedMoney);
+                            System.out.println("Money Withdraw done");
+                        }
+                    }
+
 
                     else if (command.equals("cp")) {
 

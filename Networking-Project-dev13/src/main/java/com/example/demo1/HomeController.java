@@ -48,6 +48,19 @@ public class HomeController {
 
     }
 
+
+    @FXML
+    void LogOutClicked(ActionEvent event) throws IOException {
+
+        MiniStatementController.miniFlag=2;
+        root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 500,400);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
     @FXML
     void balance_transfer_clicked(ActionEvent event) throws IOException {
 

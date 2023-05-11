@@ -196,6 +196,52 @@ public class Main extends Application {
 
     }
 
+    static void moneyTransfer(String account,String amount, String password) throws IOException, ClassNotFoundException {
+
+        System.out.println("Withdraw validation...");
+        delay();
+
+        if(password.equals(User.users[User.userNo].password))
+        {
+
+            objectOutputStream.writeObject("transfer");
+
+            objectOutputStream.writeObject(amount);
+
+
+            Object fromServer1 = objectInputStream.readObject();
+            String check = (String) fromServer1;
+
+            if (check.equals("true")) {
+
+                Object rm = objectInputStream.readObject();
+                int requestedMoney = (int) rm;
+                User.transfer(requestedMoney,account);
+                WithdrawalController.withdrawSuccessfullFlag =1;
+                System.out.println("\nMoney withdraw done...");
+
+            }
+            else if (check.equals("false"))
+            {
+                System.out.println("You don't have sufficient money...");
+            }
+            else {
+                // delay();
+                WithdrawalController.withdrawSuccessfullFlag =0;
+                System.out.println("Not valid! Try again...");
+                //System.exit(0);
+            }
+
+
+        }
+        else {
+            System.out.println("Wrong password");
+        }
+
+
+    }
+
+
     static void sendPackets() throws IOException, ClassNotFoundException {
 
         //Socket socket = new Socket("localhost", 5000);
@@ -203,20 +249,23 @@ public class Main extends Application {
         System.out.println("Client Connected...");
 
         delay();
-        System.out.println("c0");
+      //  System.out.println("c0");
 
 
 
         objectOutputStream.writeObject(name);
         objectOutputStream.writeObject(pass);
 
-        System.out.println("c1");
+       // System.out.println("c1");
         Object fromServer1 = objectInputStream.readObject();
 
-        System.out.println("c2");
+     //   System.out.println("c2");
         String fs = (String) fromServer1;
 
         if (fs.equals("true") ) {
+
+            Object fromServer = objectInputStream.readObject();
+             User.userNo= (int) fromServer;
            // delay();
             System.out.println("\nLogin Successful...");
             LoginpageController.loginFlag=1;
