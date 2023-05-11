@@ -253,6 +253,7 @@ public class Main extends Application {
 
 
 
+        objectOutputStream.writeObject("login");
         objectOutputStream.writeObject(name);
         objectOutputStream.writeObject(pass);
 

@@ -68,7 +68,7 @@ public class Server {
 
             int flag=0;
             int fl =0;
-
+/*
             while(flag==0)
             {
                 Object cMsg1 = ois.readObject();
@@ -100,13 +100,13 @@ public class Server {
                 }
 
             }
-
+*/
             while (true) {
                 Object cMsg3 = ois.readObject();
                 String command = (String) cMsg3;
               //  System.out.println(command + "  user name");
 //                System.out.println(userNo);
-                if (User.userNo >= 0) {
+                if (User.userNo >= 0|| User.userNo<0) {
                     if (command.equals("c")) {
 
                         System.out.println("deposit section");
@@ -124,7 +124,40 @@ public class Server {
                             System.out.println("Deposit done");
 
                     }
+                    else if (command.equals("login")){
 
+//                        while(flag==0)
+//                        {
+                            Object cMsg1 = ois.readObject();
+                            Object cMsg2 = ois.readObject();
+
+                            String Name = (String) cMsg1;
+                            String Pass = (String) cMsg2;
+                            System.out.println("this is server");
+
+                            for (int i = 0; i < 3; i++) {
+                                if (Name.equals(User.users[i].user) && Pass.equals(User.users[i].password))
+                                {
+                                    oos.writeObject("true");
+                                    oos.writeObject(i);
+                                    // User.userNo = i;
+                                    flag =1;
+                                    fl=1;
+                                    break;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+
+                            }
+                            if(fl==0)
+                            {
+                                oos.writeObject("false");
+                            }
+
+                      //  }
+                    }
                     else if (command.equals("withdraw")) {
 
                         System.out.println("withdraw section");
