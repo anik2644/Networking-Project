@@ -39,6 +39,8 @@ public class WithdrawalController {
         System.out.print("new balance is ");
         System.out.println(User.users[User.userNo].balance);
 
+        MiniStatementController.miniFlag=1;
+
         root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root, 500,400);

@@ -40,6 +40,7 @@ public class DepositController {
        // System.out.println("kk");
         System.out.print("new balance is ");
         System.out.println(User.users[User.userNo].balance);
+        MiniStatementController.miniFlag=1;
       //  System.out.println("jj");
 
 

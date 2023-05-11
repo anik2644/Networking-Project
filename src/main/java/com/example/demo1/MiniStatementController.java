@@ -56,6 +56,27 @@ public class MiniStatementController {
     @FXML
     void print_clicked(ActionEvent event) {
 
+
+        if(miniFlag == 1)
+        {
+            int balance =User.users[User.userNo].balance;
+            String st= "new balance is "+ balance;
+             setTextParam(st);
+        }
+        else if(miniFlag == 0)
+        {
+            int balance =User.users[User.userNo].balance;
+            String st= "name: "+ User.users[User.userNo].user + "\n address : Dhaka\n"+
+                    "balance: "+balance;
+            setTextParam(st);
+        }
+        else if(miniFlag == 2)
+        {
+            int balance =User.users[User.userNo].balance;
+            String name =User.users[User.userNo].user;
+            String st= name + "  balance is "+ balance;
+            setTextParam(st);
+        }
     }
 
     public void BackbuttonClicked(ActionEvent event) throws IOException {

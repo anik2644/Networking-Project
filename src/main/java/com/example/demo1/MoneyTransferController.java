@@ -33,6 +33,7 @@ public class MoneyTransferController {
     @FXML
     void ok_clicked(ActionEvent event) {
 
+        MiniStatementController.miniFlag=1;
     }
 
     public void BackbuttonClicked(ActionEvent event) throws IOException {

@@ -38,7 +38,8 @@ public class HomeController {
     @FXML
     void balance_check_clicked(ActionEvent event) throws IOException {
 
-        root = FXMLLoader.load(getClass().getResource("CheckBalance.fxml"));
+        MiniStatementController.miniFlag=2;
+        root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root, 500,400);
         stage.setScene(scene);
@@ -97,6 +98,7 @@ public class HomeController {
     @FXML
     void mini_statement_clicked(ActionEvent event) throws IOException {
 
+        MiniStatementController.miniFlag=0;
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("MiniStatement.fxml"));
 //        Parent root = loader.load();
 //        Scene scene = new Scene(root);
