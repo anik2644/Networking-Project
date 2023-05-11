@@ -44,7 +44,15 @@ public class ChangePinController {
             System.out.println("enter similar password");
         }
 
+        System.out.print("new password is ");
+        System.out.println(User.users[User.userNo].password);
         Main.delay();
+
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 500,400);
+        stage.setScene(scene);
+        stage.show();
 
     }
 

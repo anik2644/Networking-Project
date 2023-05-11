@@ -109,64 +109,19 @@ public class Server {
                 if (User.userNo >= 0) {
                     if (command.equals("c")) {
 
-                        System.out.println("c section");
+                        System.out.println("deposit section");
 
                         Object cMsg4 = ois.readObject();
                         String amount = (String) cMsg4;
                         int requestedMoney = Integer.parseInt(amount);
 
-                        System.out.println(requestedMoney);
-
-                        //if(requestedMoney>users[userNo].balance)
-//                        if(false)
-//                        {
-//                            oos.writeObject("false");
-//                        }
-//                        else {
-
-                          //  User.Deposit(requestedMoney);
-                           // User.users[User.userNo].balance = User.users[User.userNo].balance + requestedMoney;
+                            System.out.println(requestedMoney);
                             oos.writeObject("tr");
                             delay();
                             oos.writeObject(requestedMoney);
-
                             System.out.print("new balance is ");
                             System.out.println(User.users[User.userNo].balance+requestedMoney);
-                            System.out.println("hi");
-                       // }
-
-
-                       // sendPackets();
-//
-//                        oos.writeObject("Enter amount to be credited:\n");
-//
-//                        Object cMsg4 = ois.readObject();
-//                        int loop = (int) cMsg4;
-
-//                        if (loop == 1) {
-//                            Object cMsg5 = ois.readObject();
-//                            int value = (int) cMsg5;
-//
-//                            users[userNo].credit(value);
-//
-//                            sendPackets();
-//
-//                            oos.writeObject("Your account has been credited by " + value + " taka\n"
-//                                    + users[userNo].checkBalance());
-//                        } else if (loop == 2) {
-//                            Object cMsg5 = ois.readObject();
-//                            int value = (int) cMsg5;
-//
-//                            Object cMsg6 = ois.readObject();
-//                            int value1 = (int) cMsg6;
-//
-//                            users[userNo].credit(value);
-//
-//                            sendPackets();
-//
-//                            oos.writeObject("Your account has been credited by " + value + " taka\n"
-//                                    + users[userNo].checkBalance());
-//                        }
+                            System.out.println("Deposit done");
 
                     }
 
@@ -230,26 +185,18 @@ public class Server {
 
                     else if (command.equals("cp")) {
 
-                        System.out.println("cp section");
+                        System.out.println("change password section");
 
                         Object cMsg4 = ois.readObject();
                         String newPassword = (String) cMsg4;
+                        System.out.print("Password to set: ");
                         System.out.println(newPassword);
 
-                        if(false)
-                        {
-                            oos.writeObject("false");
-                        }
-                        else {
-
-                            User.users[User.userNo].password = newPassword;
-                            oos.writeObject("true");
-
-
-                            System.out.print("new balance is ");
-                            System.out.println(User.users[User.userNo].password);
-                            System.out.println("hi");
-                        }
+                            //User.users[User.userNo].password = newPassword;
+                        oos.writeObject("true");
+                        delay();
+                        oos.writeObject(newPassword);
+                        System.out.println("Password set done");
                     }
 
 

@@ -13,6 +13,10 @@ public class User {
     {
         User.users[userNo].balance = User.users[User.userNo].balance + requestedMoney;
     }
+    static void ChangePassword(String newPassword)
+    {
+        User.users[userNo].password = newPassword;
+    }
     //new User[3];
     static int userNo = 0;
     String user;

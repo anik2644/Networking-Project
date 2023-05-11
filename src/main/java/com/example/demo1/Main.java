@@ -86,7 +86,7 @@ public class Main extends Application {
         System.out.println("change pin...");
         delay();
 
-        if(password.equals(Main.currentPassword))
+        if(password.equals(User.users[User.userNo].password))
         {
             objectOutputStream.writeObject("cp");
             objectOutputStream.writeObject(newPpassord);
@@ -94,12 +94,16 @@ public class Main extends Application {
             String check = (String) fromServer1;
 
             if (check.equals("true")) {
-                WithdrawalController.withdrawSuccessfullFlag =1;
-                System.out.println("\nChange Password ...");
+
+                Object rm = objectInputStream.readObject();
+                String  newPassword = (String) rm;
+                User.ChangePassword(newPassword);
+                System.out.println("\nChange Password done ...");
+
             }
             else {
                 WithdrawalController.withdrawSuccessfullFlag =0;
-                System.out.println("Not valid! Try again...");
+                System.out.println("Operation not successsful! Try again...");
             }
         }
         else {
@@ -108,51 +112,36 @@ public class Main extends Application {
     }
     static void depopsitValidation(String amount, String password) throws IOException, ClassNotFoundException {
 
-        //Socket socket = new Socket("localhost", 5000);
+        System.out.println("Deposit validation check...");
         delay();
-        System.out.println("Deposit validation...");
 
-        delay();
-        System.out.println("c0");
-
-        if(password.equals(Main.currentPassword))
+        if(password.equals(User.users[User.userNo].password))
         {
 
+            System.out.print("deposit request for amount: ");
             System.out.println(amount);
-            System.out.println(password);
-            objectOutputStream.writeObject("c");
-            // objectOutputStream.writeObject(pass);
 
-            System.out.println("c1");
-//
-//            Object fromServer1 = objectInputStream.readObject();
-//            String fs = (String) fromServer1;
-//            System.out.println(fs);
+
+            objectOutputStream.writeObject("c");
             objectOutputStream.writeObject(amount);
 
-            System.out.println("c2");
-
             Object fromServer1 = objectInputStream.readObject();
-
             String check = (String) fromServer1;
-            System.out.println(check);
+          //  System.out.println(check);
 
 
             if (check.equals("tr")) {
-                // delay();
+
                 WithdrawalController.withdrawSuccessfullFlag =1;
 
                 Object rm = objectInputStream.readObject();
                 int requestedMoney = (int) rm;
-
                 User.Deposit(requestedMoney);
                 System.out.println("\nMoney depost done...");
             }
             else if (check.equals("false")) {
-                // delay();
                 WithdrawalController.withdrawSuccessfullFlag =0;
                 System.out.println("Not valid! Try againn...");
-                //System.exit(0);
             }
 
 
@@ -173,7 +162,7 @@ public class Main extends Application {
         delay();
         System.out.println("c0");
 
-        if(password.equals(Main.currentPassword))
+        if(password.equals(User.users[User.userNo].password))
         {
 
             System.out.println(amount);

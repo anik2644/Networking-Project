@@ -37,10 +37,10 @@ public class DepositController {
         Main.depopsitValidation(amount_bar.getText(),password_bar.getText());
         Main.delay();
 
-        System.out.println("kk");
+       // System.out.println("kk");
         System.out.print("new balance is ");
         System.out.println(User.users[User.userNo].balance);
-        System.out.println("jj");
+      //  System.out.println("jj");
 
 
         root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
