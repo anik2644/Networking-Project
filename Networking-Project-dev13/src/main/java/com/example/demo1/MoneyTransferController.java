@@ -39,6 +39,18 @@ public class MoneyTransferController {
 
         Main.pass = password_bar.getText();
         Main.delay();
+
+        for(int i=0;i<4;i++) {
+            if (password_bar.getText().equals(User.users[User.userNo].password)) {
+
+                break;
+            } else {
+                System.out.println("Wrong password ...Try again");
+                System.out.print("you have ");
+                System.out.print(4-i);
+                System.out.print("more time left");
+            }
+        }
         Main.moneyTransfer(account_no.getText(),amount_bar.getText(),password_bar.getText());
         Main.delay();
 
