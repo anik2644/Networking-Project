@@ -138,20 +138,20 @@ public class Main extends Application {
             System.out.println(check);
 
 
-            if (check.equals("true")) {
+            if (check.equals("tr")) {
                 // delay();
                 WithdrawalController.withdrawSuccessfullFlag =1;
-                System.out.println("\nMoney depost done...");
 
-//                System.out.print("new balance is ");
-//                System.out.println(Server.users[Server.userNo].balance);
-                //LoginpageController.loginFlag=1;
-                // currentPassword= pass;
+                Object rm = objectInputStream.readObject();
+                int requestedMoney = (int) rm;
+
+                User.Deposit(requestedMoney);
+                System.out.println("\nMoney depost done...");
             }
-            else {
+            else if (check.equals("false")) {
                 // delay();
                 WithdrawalController.withdrawSuccessfullFlag =0;
-                System.out.println("Not valid! Try again...");
+                System.out.println("Not valid! Try againn...");
                 //System.exit(0);
             }
 
@@ -241,8 +241,9 @@ public class Main extends Application {
         Object fromServer1 = objectInputStream.readObject();
 
         System.out.println("c2");
+        String fs = (String) fromServer1;
 
-        if ((boolean) fromServer1 == true) {
+        if (fs.equals("true") ) {
            // delay();
             System.out.println("\nLogin Successful...");
             LoginpageController.loginFlag=1;

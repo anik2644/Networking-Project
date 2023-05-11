@@ -37,8 +37,7 @@ public class Server {
 //        } else
 //            return false;
 //    }
-    static User[] users = new User[3];
-    static int userNo = 0;
+
     public static void main(String args[]) throws IOException {
 
 
@@ -46,9 +45,9 @@ public class Server {
 
 
 
-        users[0] = new User("Rahim", "1234", 50000);
-        users[1] = new User("Karim", "1234", 60000);
-        users[2] = new User("Rafiq", "1234", 40000);
+//        User.users[0] = new User("Rahim", "1234", 50000);
+//        User.users[1] = new User("Karim", "1234", 60000);
+//        User.users[2] = new User("Rafiq", "1234", 40000);
 
         delay();
 
@@ -68,6 +67,7 @@ public class Server {
         try {
 
             int flag=0;
+            int fl =0;
 
             while(flag==0)
             {
@@ -79,11 +79,12 @@ public class Server {
                 System.out.println("this is server");
 
                 for (int i = 0; i < 3; i++) {
-                    if (Name.equals(users[i].user) && Pass.equals(users[i].password))
+                    if (Name.equals(User.users[i].user) && Pass.equals(User.users[i].password))
                     {
-                        oos.writeObject(true);
-                        userNo = i;
+                        oos.writeObject("true");
+                        User.userNo = i;
                         flag =1;
+                        fl=1;
                         break;
                     }
                     else
@@ -92,7 +93,11 @@ public class Server {
                     }
 
                 }
-                oos.writeObject(false);
+                if(fl==0)
+                {
+                    oos.writeObject("false");
+                }
+
                 System.out.println("s5");
             }
 
@@ -101,12 +106,10 @@ public class Server {
                 String command = (String) cMsg3;
               //  System.out.println(command + "  user name");
 //                System.out.println(userNo);
-                if (userNo >= 0) {
+                if (User.userNo >= 0) {
                     if (command.equals("c")) {
 
                         System.out.println("c section");
-
-                        //   oos.writeObject("Enter amount to be debited:\n");
 
                         Object cMsg4 = ois.readObject();
                         String amount = (String) cMsg4;
@@ -115,19 +118,22 @@ public class Server {
                         System.out.println(requestedMoney);
 
                         //if(requestedMoney>users[userNo].balance)
-                        if(false)
-                        {
-                            oos.writeObject("false");
-                        }
-                        else {
+//                        if(false)
+//                        {
+//                            oos.writeObject("false");
+//                        }
+//                        else {
 
-                            users[userNo].balance+=requestedMoney;
-                            oos.writeObject("true");
+                          //  User.Deposit(requestedMoney);
+                           // User.users[User.userNo].balance = User.users[User.userNo].balance + requestedMoney;
+                            oos.writeObject("tr");
+                            delay();
+                            oos.writeObject(requestedMoney);
 
                             System.out.print("new balance is ");
-                            System.out.println(Server.users[Server.userNo].balance);
+                            System.out.println(User.users[User.userNo].balance+requestedMoney);
                             System.out.println("hi");
-                        }
+                       // }
 
 
                        // sendPackets();
@@ -177,18 +183,18 @@ public class Server {
 
                         System.out.println(requestedMoney);
 
-                        if(requestedMoney>users[userNo].balance)
+                        if(requestedMoney>User.users[User.userNo].balance)
                         {
                             oos.writeObject("false");
                         }
                         else {
 
-                            users[userNo].balance-=requestedMoney;
+                            User.users[User.userNo].balance-=requestedMoney;
                             oos.writeObject("true");
 
 
                             System.out.print("new balance is ");
-                            System.out.println(Server.users[Server.userNo].balance);
+                            System.out.println(User.users[User.userNo].balance);
                             System.out.println("hi");
                         }
                          /*
@@ -236,12 +242,12 @@ public class Server {
                         }
                         else {
 
-                            users[userNo].password = newPassword;
+                            User.users[User.userNo].password = newPassword;
                             oos.writeObject("true");
 
 
                             System.out.print("new balance is ");
-                            System.out.println(Server.users[Server.userNo].password);
+                            System.out.println(User.users[User.userNo].password);
                             System.out.println("hi");
                         }
                     }
