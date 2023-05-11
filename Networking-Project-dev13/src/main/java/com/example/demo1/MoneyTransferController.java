@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class MoneyTransferController {
 
+    static  String toUser;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -41,10 +42,10 @@ public class MoneyTransferController {
         Main.moneyTransfer(account_no.getText(),amount_bar.getText(),password_bar.getText());
         Main.delay();
 
-        System.out.print("new balance is ");
+        System.out.print("New balance is ");
         System.out.println(User.users[User.userNo].balance);
 
-        MiniStatementController.miniFlag=1;
+        MiniStatementController.miniFlag=4;
 
         root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

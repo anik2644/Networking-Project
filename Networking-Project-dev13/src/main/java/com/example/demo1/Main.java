@@ -278,14 +278,6 @@ public class Main extends Application {
             //System.exit(0);
         }
 
-
-
-        /*
-        while (true) {
-            if (error() == true)
-                break;
-        }
-        */
     }
 
 

@@ -6,8 +6,8 @@ public class User {
             new User("Rahim", "1234", 50000),
             new User("Karim", "1234", 60000),
             new User("Anik", "11556", 10000),
-//            new User("Nafisa", "2645", 420),
-//            new User("Mahmud", "15865", 7000)
+            new User("Nafisa", "2645", 420),
+            new User("Mahmud", "15865", 7000)
 };
 
 
@@ -25,8 +25,9 @@ public class User {
         int toUser=2;
         String name;
         int flag =0;
+        //MiniStatementController.miniFlag =1;
         User.users[userNo].balance = User.users[User.userNo].balance - requestedMoney;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             name= User.users[i].user;
             if (name.equals(account))
             {
@@ -42,6 +43,7 @@ public class User {
         else {
             User.users[toUser].balance = User.users[toUser].balance + requestedMoney;
             System.out.println(toUser);
+            MoneyTransferController.toUser = User.users[toUser].user;
         }
     }
     static void ChangePassword(String newPassword)

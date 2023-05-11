@@ -135,7 +135,7 @@ public class Server {
                             String Pass = (String) cMsg2;
                             System.out.println("this is server");
 
-                            for (int i = 0; i < 3; i++) {
+                            for (int i = 0; i < 5; i++) {
                                 if (Name.equals(User.users[i].user) && Pass.equals(User.users[i].password))
                                 {
                                     oos.writeObject("true");

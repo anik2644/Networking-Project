@@ -60,21 +60,28 @@ public class MiniStatementController {
         if(miniFlag == 1)
         {
             int balance =User.users[User.userNo].balance;
-            String st= "new balance is "+ balance;
+            String st= "New balance is: "+ balance;
              setTextParam(st);
+        }
+       else if(miniFlag == 4)
+        {
+            int balance =User.users[User.userNo].balance;
+            String s= "Balance Transfer Successful \n to the Account:\n" +MoneyTransferController.toUser;
+            String st= s+ "\nNew balance is: "+ balance;
+            setTextParam(st);
         }
         else if(miniFlag == 0)
         {
             int balance =User.users[User.userNo].balance;
-            String st= "name: "+ User.users[User.userNo].user + "\n address : Dhaka\n"+
-                    "balance: "+balance;
+            String st= "Name: "+ User.users[User.userNo].user + "\n Address: Dhaka\n"+
+                    "Balance: "+balance;
             setTextParam(st);
         }
         else if(miniFlag == 2)
         {
             int balance =User.users[User.userNo].balance;
             String name =User.users[User.userNo].user;
-            String st= name + "  balance is "+ balance;
+            String st= name + "  balance is: "+ balance;
             setTextParam(st);
         }
     }
