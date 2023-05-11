@@ -1,5 +1,7 @@
 package com.example.demo1;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,13 @@ public class MiniStatementController {
     @FXML
     private Label label;
 
+    private StringProperty textParam = new SimpleStringProperty();
+    public void initialize() {
+        label.textProperty().bind(textParam);
+    }
+    public void setTextParam(String textParam) {
+        this.textParam.set(textParam);
+    }
     @FXML
     static String textPara;
 

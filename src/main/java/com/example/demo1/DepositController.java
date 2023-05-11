@@ -44,8 +44,29 @@ public class DepositController {
 
 
         root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
+
+        //Scene scene = new Scene(fxmlLoader.load(), 500, 400);
+       // stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        //FXMLLoader fxmlLoader = new FXMLLoader(MiniStatementController.class.getResource("MiniStatement.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MiniStatement.fxml"));
+//
+//        MiniStatementController controller = fxmlLoader.getController();
+//        String textParam = "Hello, World!";
+//        controller.setTextParam(textParam);
+//
+//
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MiniStatement.fxml"));
+       // Parent miniStatementRoot = fxmlLoader.load();
+        MiniStatementController controller = fxmlLoader.getController();
+       // controller.setTextParam("Hello, World!");
+
+
+        scene = new Scene(fxmlLoader.load(), 500, 400);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 500,400);
+      //  scene = new Scene(fxmlLoader.load(),root, 500,400);
         stage.setScene(scene);
         stage.show();
     }
