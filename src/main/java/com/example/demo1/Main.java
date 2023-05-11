@@ -127,8 +127,6 @@ public class Main extends Application {
 
             Object fromServer1 = objectInputStream.readObject();
             String check = (String) fromServer1;
-          //  System.out.println(check);
-
 
             if (check.equals("tr")) {
 
@@ -155,46 +153,32 @@ public class Main extends Application {
 
     static void wirhDrawValidation(String amount, String password) throws IOException, ClassNotFoundException {
 
-        //Socket socket = new Socket("localhost", 5000);
-        delay();
         System.out.println("Withdraw validation...");
-
         delay();
-        System.out.println("c0");
 
         if(password.equals(User.users[User.userNo].password))
         {
 
-            System.out.println(amount);
-            System.out.println(password);
-            objectOutputStream.writeObject("d");
-           // objectOutputStream.writeObject(pass);
+            objectOutputStream.writeObject("withdraw");
 
-            System.out.println("c1");
-//
-//            Object fromServer1 = objectInputStream.readObject();
-//            String fs = (String) fromServer1;
-//            System.out.println(fs);
             objectOutputStream.writeObject(amount);
 
-            System.out.println("c2");
 
             Object fromServer1 = objectInputStream.readObject();
-
             String check = (String) fromServer1;
-            System.out.println(check);
-
 
             if (check.equals("true")) {
-                // delay();
+
+                Object rm = objectInputStream.readObject();
+                int requestedMoney = (int) rm;
+                User.Withdraw(requestedMoney);
                 WithdrawalController.withdrawSuccessfullFlag =1;
                 System.out.println("\nMoney withdraw done...");
 
-//
-//                System.out.print("new balance is ");
-//                System.out.println(Server.users[Server.userNo].balance);
-                //LoginpageController.loginFlag=1;
-                // currentPassword= pass;
+            }
+            else if (check.equals("false"))
+            {
+                System.out.println("You don't have sufficient money...");
             }
             else {
                 // delay();

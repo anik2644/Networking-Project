@@ -125,12 +125,9 @@ public class Server {
 
                     }
 
-                    else if (command.equals("d")) {
+                    else if (command.equals("withdraw")) {
 
-                        //sendPackets();
-                        System.out.println("d section");
-
-                     //   oos.writeObject("Enter amount to be debited:\n");
+                        System.out.println("withdraw section");
 
                         Object cMsg4 = ois.readObject();
                         String amount = (String) cMsg4;
@@ -148,39 +145,13 @@ public class Server {
                             oos.writeObject("true");
 
 
+                            System.out.println(requestedMoney);
+                            delay();
+                            oos.writeObject(requestedMoney);
                             System.out.print("new balance is ");
-                            System.out.println(User.users[User.userNo].balance);
-                            System.out.println("hi");
+                            System.out.println(User.users[User.userNo].balance-requestedMoney);
+                            System.out.println("Money Withdraw done");
                         }
-                         /*
-                        if (requestedMoney == 1) {
-                            Object cMsg5 = ois.readObject();
-                            int value = (int) cMsg5;
-
-                            sendPackets();
-
-                            if (users[userNo].debit(value) == true)
-                                oos.writeObject("Your account has been debited by " + value + " taka\n"
-                                        + users[userNo].checkBalance());
-                            else
-                                oos.writeObject("Insufficient Balance\n" + users[userNo].checkBalance());
-
-                        } else if (requestedMoney == 2) {
-                            Object cMsg5 = ois.readObject();
-                            int value = (int) cMsg5;
-
-                            Object cMsg6 = ois.readObject();
-                            int value1 = (int) cMsg6;
-
-                            sendPackets();
-
-                            if (users[userNo].debit(value) == true)
-                                oos.writeObject("Your account has been debited by " + value + " taka\n"
-                                        + users[userNo].checkBalance());
-                            else
-                                oos.writeObject("Insufficient Balance\n" + users[userNo].checkBalance());
-                        }
-                        */
                     }
 
                     else if (command.equals("cp")) {
