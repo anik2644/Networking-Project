@@ -31,7 +31,20 @@ public class ChangePinController {
     private TextField rewrite;
 
     @FXML
-    void ok_clicked(ActionEvent event) {
+    void ok_clicked(ActionEvent event) throws IOException, ClassNotFoundException {
+
+        String np= new_pin.getText();
+        String rw= rewrite.getText();
+        Main.delay();
+        if(np.equals(rw))
+        {
+            Main.changePassword(new_pin.getText(),password_bar.getText());
+        }
+        else {
+            System.out.println("enter similar password");
+        }
+
+        Main.delay();
 
     }
 

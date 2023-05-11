@@ -79,7 +79,33 @@ public class Main extends Application {
         }
     }
 
+    static void changePassword(String newPpassord, String password) throws IOException, ClassNotFoundException {
 
+        //Socket socket = new Socket("localhost", 5000);
+        delay();
+        System.out.println("change pin...");
+        delay();
+
+        if(password.equals(Main.currentPassword))
+        {
+            objectOutputStream.writeObject("cp");
+            objectOutputStream.writeObject(newPpassord);
+            Object fromServer1 = objectInputStream.readObject();
+            String check = (String) fromServer1;
+
+            if (check.equals("true")) {
+                WithdrawalController.withdrawSuccessfullFlag =1;
+                System.out.println("\nChange Password ...");
+            }
+            else {
+                WithdrawalController.withdrawSuccessfullFlag =0;
+                System.out.println("Not valid! Try again...");
+            }
+        }
+        else {
+            System.out.println("Wrong password");
+        }
+    }
     static void depopsitValidation(String amount, String password) throws IOException, ClassNotFoundException {
 
         //Socket socket = new Socket("localhost", 5000);

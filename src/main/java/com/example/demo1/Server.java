@@ -104,9 +104,6 @@ public class Server {
                 if (userNo >= 0) {
                     if (command.equals("c")) {
 
-
-
-                        //sendPackets();
                         System.out.println("c section");
 
                         //   oos.writeObject("Enter amount to be debited:\n");
@@ -166,6 +163,7 @@ public class Server {
 //                        }
 
                     }
+
                     else if (command.equals("d")) {
 
                         //sendPackets();
@@ -187,6 +185,10 @@ public class Server {
 
                             users[userNo].balance-=requestedMoney;
                             oos.writeObject("true");
+
+
+                            System.out.print("new balance is ");
+                            System.out.println(Server.users[Server.userNo].balance);
                             System.out.println("hi");
                         }
                          /*
@@ -218,6 +220,30 @@ public class Server {
                                 oos.writeObject("Insufficient Balance\n" + users[userNo].checkBalance());
                         }
                         */
+                    }
+
+                    else if (command.equals("cp")) {
+
+                        System.out.println("cp section");
+
+                        Object cMsg4 = ois.readObject();
+                        String newPassword = (String) cMsg4;
+                        System.out.println(newPassword);
+
+                        if(false)
+                        {
+                            oos.writeObject("false");
+                        }
+                        else {
+
+                            users[userNo].password = newPassword;
+                            oos.writeObject("true");
+
+
+                            System.out.print("new balance is ");
+                            System.out.println(Server.users[Server.userNo].password);
+                            System.out.println("hi");
+                        }
                     }
 
 
