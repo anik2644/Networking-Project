@@ -31,48 +31,62 @@ public class MoneyTransferController {
     @FXML
     private TextField password_bar;
 
+    static int count =0;
     @FXML
     void ok_clicked(ActionEvent event) throws IOException, ClassNotFoundException {
 
 
 
 
-        Main.pass = password_bar.getText();
-        Main.delay();
+        int fl=0 ;
+        int fla =0;
+        count++;
 
-        for(int i=0;i<4;i++) {
-            if (password_bar.getText().equals(User.users[User.userNo].password)) {
+        if(count<10) {
+            for (int j = 0; j < 5; j++) {
+                if ( password_bar.getText().equals(User.users[User.userNo].password)) {
+                    fl = 1;
+                    break;
+                }
+            }
+            if (fl == 1) {
+
+                fla = 1;
 
 
-                break;
-            } else {
-                System.out.println("Wrong password ...Try again");
-                System.out.print("you have ");
-                System.out.print(4-i);
-                System.out.print("more time left");
+                //  Main.name = username.getText();
+                Main.pass = password_bar.getText();
+                Main.delay();
+                Main.moneyTransfer(account_no.getText(),amount_bar.getText(),password_bar.getText());
+                Main.delay();
 
-                root = FXMLLoader.load(getClass().getResource("MoneyTransfer.fxml"));
+                System.out.print("New balance is ");
+                System.out.println(User.users[User.userNo].balance);
+
+                MiniStatementController.miniFlag=4;
+
+                root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root, 500,400);
                 stage.setScene(scene);
                 stage.show();
 
+
+            } else {
+
+                //lbl.setText("Wrong Password");
+                System.out.println("Wrong password ...Try again");
+                System.out.print("you have ");
+                System.out.print(10 - count);
+                System.out.print("more time left");
+
             }
         }
-        Main.moneyTransfer(account_no.getText(),amount_bar.getText(),password_bar.getText());
+
+
+
+        Main.pass = password_bar.getText();
         Main.delay();
-
-        System.out.print("New balance is ");
-        System.out.println(User.users[User.userNo].balance);
-
-        MiniStatementController.miniFlag=4;
-
-        root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 500,400);
-        stage.setScene(scene);
-        stage.show();
-
 
     }
 

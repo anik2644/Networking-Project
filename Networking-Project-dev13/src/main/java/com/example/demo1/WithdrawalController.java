@@ -27,25 +27,53 @@ public class WithdrawalController {
     @FXML
     private TextField password_bar;
 
+    static int count =0;
     @FXML
     void ok_clicked(ActionEvent event) throws IOException, ClassNotFoundException {
 
 
-        Main.pass = password_bar.getText();
-        Main.delay();
-        Main.wirhDrawValidation(amount_bar.getText(),password_bar.getText());
-        Main.delay();
+        int fl=0 ;
+        int fla =0;
+        count++;
 
-        System.out.print("new balance is ");
-        System.out.println(User.users[User.userNo].balance);
+        if(count<10) {
+            for (int j = 0; j < 5; j++) {
+                if ( password_bar.getText().equals(User.users[User.userNo].password)) {
+                    fl = 1;
+                    break;
+                }
+            }
+            if (fl == 1) {
 
-        MiniStatementController.miniFlag=1;
+                fla = 1;
+                Main.pass = password_bar.getText();
+                Main.delay();
+                Main.wirhDrawValidation(amount_bar.getText(),password_bar.getText());
+                Main.delay();
 
-        root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 500,400);
-        stage.setScene(scene);
-        stage.show();
+                System.out.print("new balance is ");
+                System.out.println(User.users[User.userNo].balance);
+
+                MiniStatementController.miniFlag=1;
+
+                root = FXMLLoader.load(getClass().getResource("MiniStatement.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root, 500,400);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+
+                //lbl.setText("Wrong Password");
+                System.out.println("Wrong password ...Try again");
+                System.out.print("you have ");
+                System.out.print(10 - count);
+                System.out.print("more time left");
+
+            }
+        }
+
+
+
     }
 
     public void BackbuttonClicked(ActionEvent event) throws IOException {
