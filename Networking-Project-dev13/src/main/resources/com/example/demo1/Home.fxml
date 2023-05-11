@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HomeController">
+   <children>
+      <Accordion layoutX="228.0" layoutY="110.0" />
+      <Button fx:id="cash_withdraw" layoutX="88.0" layoutY="79.0" mnemonicParsing="false" onAction="#cash_withdraw_clicked" prefHeight="61.0" prefWidth="125.0" text="Cash Withdraw" />
+      <Button fx:id="deposit" layoutX="88.0" layoutY="157.0" mnemonicParsing="false" onAction="#deposit_clicked" prefHeight="61.0" prefWidth="125.0" text="Deposit" />
+      <Button fx:id="balance_check" layoutX="91.0" layoutY="238.0" mnemonicParsing="false" onAction="#balance_check_clicked" prefHeight="61.0" prefWidth="125.0" text="Balance Check" />
+      <Button fx:id="change_pin" layoutX="268.0" layoutY="78.0" mnemonicParsing="false" onAction="#change_pin_clicked" prefHeight="61.0" prefWidth="125.0" text="Change PIN" />
+      <Button fx:id="mini_statement" layoutX="268.0" layoutY="156.0" mnemonicParsing="false" onAction="#mini_statement_clicked" prefHeight="61.0" prefWidth="125.0" text="Mini-Statement:" />
+      <Button fx:id="balance_transfer" layoutX="271.0" layoutY="237.0" mnemonicParsing="false" onAction="#balance_transfer_clicked" prefHeight="61.0" prefWidth="125.0" text="Balance Transfer" />
+   </children>
+</AnchorPane>
